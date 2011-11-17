@@ -1,0 +1,80 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="HandsOnCheckIn.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="ProjectItemTemplate">
+			<Grid>
+				<TextBlock x:Name="ProjectName" HorizontalAlignment="Left" Height="29" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="89"/>
+				<TextBlock x:Name="ProjectDate" Height="18" Margin="0,0,27,-21" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" FontSize="13.333" Foreground="#FF979292"/>
+				<TextBlock x:Name="ProjectLocation" Height="18" Margin="0,0,-32,-21" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" FontSize="13.333" Foreground="#FF979292" TextAlignment="Right" HorizontalAlignment="Right" Width="62"/>
+			</Grid>
+		</DataTemplate>
+		<DataTemplate x:Key="ProjectsItemTemplate1">
+			<StackPanel>
+				<TextBlock Text="{Binding Date, StringFormat='M/d/yy'}"/>
+				<TextBlock Text="{Binding Location}"/>
+				<TextBlock Text="{Binding Name}"/>
+			</StackPanel>
+		</DataTemplate>
+		<DataTemplate x:Key="ProjectsItemTemplate">
+			<StackPanel/>
+		</DataTemplate>
+		<DataTemplate x:Key="ProjectsItemTemplate2">
+			<Grid Width="440">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="0.571*"/>
+					<RowDefinition Height="0.429*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.218*"/>
+					<ColumnDefinition Width="0.782*"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock x:Name="Name" Text="{Binding Name}" FontSize="32" VerticalAlignment="Top" d:LayoutOverrides="Width" Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
+				<TextBlock x:Name="Date" Text="{Binding Date, StringFormat='M/d/yy'}" FontSize="16" Foreground="#FF939393" HorizontalAlignment="Left" VerticalAlignment="Bottom" d:LayoutOverrides="HorizontalAlignment" Grid.Row="1"/>
+				<TextBlock x:Name="Location" Text="{Binding Location}" FontSize="16" Foreground="#FF6E6E6E" HorizontalAlignment="Left" Margin="0,0,-4,0" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox, HorizontalMargin" Grid.Column="1" Grid.Row="1"/>
+			</Grid>
+		</DataTemplate>
+	</phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Source={StaticResource SampleDataSource}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="HANDS ON ATLANTA" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="projects" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FF3760C3"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        	<ListBox x:Name="serviceProjectsList" Margin="8,0,0,0" ItemsSource="{Binding}" ItemTemplate="{StaticResource ProjectsItemTemplate2}"/></Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>

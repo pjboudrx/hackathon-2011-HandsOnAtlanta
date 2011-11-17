@@ -1,0 +1,12 @@
+*.ReSharper.user
+*.csproj.user
+_ReSharper.*
+*.suo
+*.sln.cache
+*/obj/*
+*/bin/*
+!/lib/*/bin/*
+*/*/user.config
+*~
+production.js
+
